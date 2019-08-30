@@ -1,11 +1,13 @@
 const express = require("express");
 const server = express();
-const loginRouter = require("./LoginManagement/loginRouter.js");
+const loginRouter = require("./Login/loginRouter.js");
 const signupRouter = require("./Registration/registrationRouter.js");
+const userRouter = require("./Users/userRouter.js");
 
 server.use(express.json());
-server.use("/api/signup", signupRouter);
+server.use("/api/register", signupRouter);
 server.use("/api/login", loginRouter);
+server.use("/api/users", userRouter);
 
 const PORT = 4000;
 

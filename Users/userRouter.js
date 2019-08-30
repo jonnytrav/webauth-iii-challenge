@@ -1,13 +1,14 @@
 const express = require("express");
 const router = express.Router();
-const DB = require("./loginHelper.js");
+const DB = require("./userHelpers.js");
+const verify = require("../middleware");
 
-router.get("/", async (req, res) => {
+router.get("/", verify, async (req, res) => {
   try {
     const users = await DB.getUsers();
     res.status(200).json(users);
   } catch (err) {
-    res.status(400).json({ success: false, err });
+    res.status(500).json(err.message);
   }
 });
 
